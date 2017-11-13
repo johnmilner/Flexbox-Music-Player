@@ -1,100 +1,77 @@
-* {
-  box-sizing: border-box;
-}
+html,
+  body {
+    height: 100%; /*setting this explicitly is important*/
+  }
 
-html {
-  height: 100%;
-}
 body {
-  display: flex;
-  background-color: #fff;
-  flex-direction: column;
-  height: 100%;
-  margin: 0;
-  font-family: Lato, sans-serif;
-  color: #222;
-  font-size: 0.9em;
-}
-
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin: 0;
+    font-family: Lato, sans-serif;
+    color: #222;
+    font-size: 0.9em;
+  }
 
 main {
-  flex: 1 0 auto;
-  display: flex;
-}
+  flex: 1 0 auto; /*Is a flex item*/
+  display: flex; /*I just included this! - now a flex container with flex items: sidebar & main content section*/
+  }
 
 aside {
-  flex: 0 0 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #f2f2f2;
+   
+    flex: 0 0 40px; /*do not grow or shrink. Stay fixed at 40px*/ 
+
+    /* ...  */
+    display: flex; /*Now a flex-container too*/
+  
+    
+    flex-direction: column; /*stack icons vertically*/
+  
+    
+    /*since direction is changed, this works on the vertical direction*/
+    justify-content: space-around;   
+
+    
+    align-items: center; /*direction is changed! This affects the horizontal direction. Places Icons in the center*/
+  
+   
+     background-color: #f2f2f2; /*make me pretty*/
+  }
+
+
+     aside i.fa {
+        font-size: 0.9em;  /*font size for the icons*/
+  }
+
+
+  .content {
+    display: flex;
+    flex: 1 1 auto; /*this makes sure the section grows to fill the entire available space and shrinks too*/
+    flex-direction: column;
 }
 
-aside i.fa {
-  font-size: 0.9em;
-}
 
-section.content {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-section.content .music-head {
-  flex: 0 0 280px;
-  display: flex;
+.music-head {
+   flex: 0 0 280px; /*Same memo, don't grow or shrink - stay at 280px*/
+  display: flex;  
   padding: 40px;
   background-color: #4e4e4e;
 }
-
-section.content .music-head  .catty-music{
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  font-weight: 300;
-  color: #fff;
-  padding-left: 50px;
+.music-list {
+    flex: 1 0 auto;
+    list-style-type: none;
+    padding: 5px 10px 0px;
 }
 
-.catty-music div:nth-child(1){
-  margin-bottom: auto;
-}
-
-.catty-music div:nth-child(2){
-  margin-top: 0;
-}
-
-.catty-music div:nth-child(2) i.fa{
-  font-size: 0.9em;
-  padding: 0 0.7em;
-  font-weight: 300;
-}
-
-.catty-music div:nth-child(1) p:first-child{
-  font-size: 1.8em;
-  margin: 0 0 10px;
-}
-
-.catty-music div:nth-child(1) p:not(:first-child){
-  font-size: 0.9em;
-  margin: 2px 0;
-}
-
-section.content .music-list {
-  flex: 1 0 auto;
-  list-style-type: none;
-  padding: 5px 10px 0px;
-}
 
 li {
-  display: flex;
-  padding: 0 20px;
+  display: flex; /*Paragraphs are now displayed on one line*/
+  padding: 0 20px; /*Some breahing space*/
   min-height: 50px;
 }
-
 li p {
-  flex: 0 0 25%;
+  flex: 0 0 25%; /*This is the sweet sauce*/
 }
 
 li span.catty-cloud {
@@ -105,6 +82,35 @@ li span.catty-cloud {
 
 li:nth-child(2n) {
   background-color: #f2f2f2;
+}
+
+
+.catty-music{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+  color: #fff;
+  padding-left: 50px;
+}
+.catty-music div:nth-child(1){
+  margin-bottom: auto;
+}
+.catty-music div:nth-child(2){
+  margin-top: 0;
+}
+.catty-music div:nth-child(2) i.fa{
+  font-size: 0.9em;
+  padding: 0 0.7em;
+  font-weight: 300;
+}
+.catty-music div:nth-child(1) p:first-child{
+  font-size: 1.8em;
+  margin: 0 0 10px;
+}
+.catty-music div:nth-child(1) p:not(:first-child){
+  font-size: 0.9em;
+  margin: 2px 0;
 }
 
 footer {
@@ -130,60 +136,4 @@ footer {
   align-items: center;
   justify-content: space-between;
   width: 50%;
-}
-
-
-/*
-========================================================
-Mobile responsiveness
-=========================================================
-*/
-
-@media screen and (max-width: 64em) {
-
-  .sm-hide {
-    display:none;
-  }
-
-  .sm-text-center {
-    text-align: center;
-  }
-
-  .sm-text-right {
-    text-align: right;
-  }
-
-  section.content .music-head {
-    flex: 0 0 auto; /*auto compute height*/
-    display: flex;
-    flex-direction: column; /*stack image and music details vertically*/
-    align-items: center; /*center items. left-to-right*/
-    padding: 40px 0;
-    background-color: #4e4e4e;
-  }
-
-  section.content .music-head  .catty-music{
-    padding: 0; /*remove the spacing.*/
-  }
-
-  /*album art*/
-  .music-head img {
-    width: 150px;
-  }
-
-  /*album details*/
-  .catty-music div:nth-child(1) p:first-child{
-    margin: 20px 0;
-    font-size: 1em;
-  }
-
-  /*song lists*/
-  li p {
-    flex: 0 0 50%;
-  }
-
-  /*music control*/
-  .catty-music-controls {
-    justify-content: space-around;
-  }
 }
